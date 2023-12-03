@@ -32,7 +32,7 @@ jobs:
         poetry install --no-root
     - name: Lint
       run: |
-        poetry run task Lint
+        poetry run task lint
     - name: test
       run: |
         poetry run task test
@@ -42,4 +42,3 @@ jobs:
     - name: security
       run: |  
         poetry run task security
-        poetry
