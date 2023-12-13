@@ -42,7 +42,7 @@ jobs:
   
     runs-on: ubuntu-latest
     concurrency:
-      group: wroking-group
+      group: working-group
     defaults:
       run:
         working-directory: ./example-app
@@ -69,7 +69,7 @@ jobs:
   
     runs-on: ubuntu-latest
     concurrency:
-      group: wroking-group
+      group: working-group
     defaults:
       run:
         working-directory: ./example-app
@@ -96,7 +96,7 @@ jobs:
 
     runs-on: ubuntu-latest
     concurrency:
-      group: wroking-group
+      group: working-group
     defaults:
       run:
         working-directory: ./example-app
@@ -125,7 +125,7 @@ jobs:
     defaults:
       run:
         working-directory: ./example-app
-    needs: wroking-group
+    needs: ['lint', 'security', 'formatter']
     steps:
     - uses: actions/checkout@v3
     - name: Set up Python 3.10
