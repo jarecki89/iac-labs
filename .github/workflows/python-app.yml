@@ -46,8 +46,9 @@ jobs:
       id: cache-venv
       uses: actions/cache@v2
       with:
-        path: /home/runner/.cache/pypoetry/virtualenvs
-        key: ${{ runner.os }}-venv
+        path: |
+          ~/.cache/pypoetry/virtualenvs
+        key: ${{ runner.os }}-venv-${{ hashFiles('**/*.toml') }}
 
   lint:
     runs-on: ${{ matrix.os }}
@@ -76,7 +77,8 @@ jobs:
       id: cached-poetry-dependencies
       uses: actions/cache@v3
       with:
-        path: /home/runner/.cache/pypoetry/virtualenvs
+        path: |
+          ~/.cache/pypoetry/virtualenvs
         key: ${{ runner.os }}-venv
 
     - name: Lint
@@ -114,7 +116,7 @@ jobs:
       uses: actions/cache@v3
       with:
         path: |
-            ~/.cache/pypoetry/virtualenvs
+          ~/.cache/pypoetry/virtualenvs
         key: ${{ runner.os }}-venv-${{ hashFiles('**/*.toml') }}
 
     - name: Formatter
@@ -146,7 +148,7 @@ jobs:
       uses: actions/cache@v3
       with:
         path: |
-            ~/.cache/pypoetry/virtualenvs
+          ~/.cache/pypoetry/virtualenvs
         key: ${{ runner.os }}-venv-${{ hashFiles('**/*.toml') }}
 
     - name: Security scan
@@ -173,7 +175,7 @@ jobs:
       uses: actions/cache@v3
       with:
         path: |
-            ~/.cache/pypoetry/virtualenvs
+          ~/.cache/pypoetry/virtualenvs
         key: ${{ runner.os }}-venv-${{ hashFiles('**/*.toml') }}
 
     - name: Security scan
