@@ -76,7 +76,7 @@ jobs:
       id: cached-poetry-dependencies
       uses: actions/cache@v3
       with:
-        path: /home/runner/.cache/pypoetry/virtualenvs
+        path: /home/runner/.cache/example-app/.venv
         key: ${{ runner.os }}-venv
 
     - name: Lint
@@ -113,7 +113,7 @@ jobs:
       id: cached-poetry-dependencies
       uses: actions/cache@v3
       with:
-        path: /home/runner/.cache/pypoetry/virtualenvs
+        path: /home/runner/.cache/example-app/.venv
         key: ${{ runner.os }}-venv
 
     - name: Formatter
@@ -144,7 +144,7 @@ jobs:
       id: cached-poetry-dependencies
       uses: actions/cache@v3
       with:
-        path: /home/runner/.cache/pypoetry/virtualenvs
+        path: /home/runner/.cache/example-app/.venv
         key: ${{ runner.os }}-venv
 
     - name: Security scan
@@ -170,7 +170,7 @@ jobs:
       id: cached-poetry-dependencies
       uses: actions/cache@v3
       with:
-        path: /home/runner/.cache/pypoetry/virtualenvs
+        path: /home/runner/.cache/example-app/.venv
         key: ${{ runner.os }}-venv
 
     - name: Security scan
