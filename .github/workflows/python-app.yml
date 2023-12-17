@@ -47,7 +47,7 @@ jobs:
       uses: actions/cache@v2
       with:
         path: /home/runner/.cache/pypoetry/virtualenvs
-        key: ${{ runner.os }}-venv-${{ hashFiles('**/*.toml') }}
+        key: ${{ runner.os }}-venv
 
   lint:
     runs-on: ${{ matrix.os }}
@@ -58,6 +58,8 @@ jobs:
       run:
         working-directory: ./example-app
     needs: build
+    concurrency:
+      group: static1
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
@@ -82,8 +84,13 @@ jobs:
         poetry run task lint
 
   formatter:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
     needs: build
+    concurrency:
+      group: static2
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
@@ -114,8 +121,13 @@ jobs:
         poetry run task formatter
 
   security:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
     needs: build
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    concurrency:
+      group: static3
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
